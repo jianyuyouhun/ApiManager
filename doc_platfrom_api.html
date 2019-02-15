@@ -1,0 +1,3264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>贵健康医生统一平台API接口文档-V1.01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table {
+  border-collapse:collapse;
+}
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h3>贵健康医生统一平台API接口文档</h3>
+<blockquote>
+<p>姚源登 v1.00 2017-06-28 &copy; 2017 Longmaster Inc.All Rights Reserved.</p>
+</blockquote>
+<h4>必传参数</h4>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">app_id</td>
+	<td align="left">API授权账号</td>
+	<td align="left">int</td>
+	<td align="left">统一平台授权的账号ID</td>
+</tr>
+<tr>
+	<td align="left">nonce_str</td>
+	<td align="left">随机字符串</td>
+	<td align="left">string</td>
+	<td align="left">调和参数，使签名变得不可预测</td>
+</tr>
+<tr>
+	<td align="left">timestamp</td>
+	<td align="left">时间戳</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+<tr>
+	<td align="left">sign</td>
+	<td align="left">签名</td>
+	<td align="left">string</td>
+	<td align="left">接口请求签名</td>
+</tr>
+</tbody>
+</table>
+<h4>接口安全设置</h4>
+<ul>
+<li>请求有效性</li>
+</ul>
+<p>为了防止同一个请求无数次调用，每个请求有效时间为五分钟；过期请求失效不再处理改请求；为了您的请求的数据安全和有效“timestamp”请使用当前时间戳。</p>
+<ul>
+<li>数据安全性</li>
+</ul>
+<p>为防止数据在传输过程中被截取和篡改，确保数据安全；接口请求参数和通用必传参数除“sign”需参与签名（签名详见附录一）。</p>
+<ul>
+<li>
+<p>请求方式</p>
+</li>
+<li>
+<p>必传参数使用header头传输</p>
+</li>
+<li>接口业务参数按接口定义的GET或POST方式传输</li>
+</ul>
+<h4>接口定义</h4>
+<h5>0001 拉取医院列表</h5>
+<blockquote>
+<p>路由:/hospital/list  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">offset</td>
+	<td align="left">偏移</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">偏移条数</td>
+</tr>
+<tr>
+	<td align="left">take</td>
+	<td align="left">拉取条数</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">大于0的整数</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">医院名称</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">level_id</td>
+	<td align="left">医院等级码</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">province_id</td>
+	<td align="left">医院所属省份ID</td>
+	<td align="left">string(6)</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">city_id</td>
+	<td align="left">所属市ID</td>
+	<td align="left">string(6)</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">area_id</td>
+	<td align="left">所属区ID</td>
+	<td align="left">string(6)</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数为筛选条件，无请不要传此参数。</em></p>
+<h6>EG ######</h6>
+<p><code>/hospital/list?offset=0&amp;take=10&amp;is_auth_hlwyy=1</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">total</td>
+	<td align="left">总条数</td>
+	<td align="left">int</td>
+	<td align="left">符合条件的数据总数</td>
+</tr>
+<tr>
+	<td align="left">list</td>
+	<td align="left">列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">医院唯一标识</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">医院名称</td>
+	<td align="left">string</td>
+	<td align="left">医院名称</td>
+</tr>
+<tr>
+	<td align="left">hosp_image_url</td>
+	<td align="left">医院封面</td>
+	<td align="left">url</td>
+	<td align="left">医院封面图片下载地址</td>
+</tr>
+<tr>
+	<td align="left">hosp_page_url</td>
+	<td align="left">医院主页</td>
+	<td align="left">url</td>
+	<td align="left">医院主页网址</td>
+</tr>
+<tr>
+	<td align="left">hosp_introduce</td>
+	<td align="left">医院简介</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_phone</td>
+	<td align="left">医院电话</td>
+	<td align="left">string</td>
+	<td align="left">医院联系电话</td>
+</tr>
+<tr>
+	<td align="left">level_id</td>
+	<td align="left">医院等级ID</td>
+	<td align="left">int</td>
+	<td align="left">医院等级详见附录三</td>
+</tr>
+<tr>
+	<td align="left">level_name</td>
+	<td align="left">医院等级</td>
+	<td align="left">string</td>
+	<td align="left">医院等级名称</td>
+</tr>
+<tr>
+	<td align="left">contacts_name</td>
+	<td align="left">联系人</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">contacts_mobile</td>
+	<td align="left">联系电话</td>
+	<td align="left">string</td>
+	<td align="left">联系人联系电话</td>
+</tr>
+<tr>
+	<td align="left">province_id</td>
+	<td align="left">省/直辖市/自治区/特区id</td>
+	<td align="left">string(6)</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">province_name</td>
+	<td align="left">省/直辖市/自治区/特区名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">city_id</td>
+	<td align="left">市/自治州ID</td>
+	<td align="left">string(6)</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">city_name</td>
+	<td align="left">市/自治州名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">area_id</td>
+	<td align="left">区/县/县级市ID</td>
+	<td align="left">string</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">area_name</td>
+	<td align="left">区/县/县级市名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_addr</td>
+	<td align="left">医院详情地址</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">lng</td>
+	<td align="left">经度</td>
+	<td align="left">float</td>
+	<td align="left">医院所属经度</td>
+</tr>
+<tr>
+	<td align="left">lat</td>
+	<td align="left">纬度</td>
+	<td align="left">float</td>
+	<td align="left">医院所属纬度</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;total&quot;: 1,
+    &quot;list&quot;: [
+        {
+            &quot;hosp_id&quot;: &quot;88888888A&quot;,
+            &quot;hosp_name&quot;: &quot;互联网医院&quot;,
+            &quot;hosp_image_url&quot;: &quot;&quot;,
+            &quot;hosp_page_url&quot;: &quot;https://www.hlwyy.cn&quot;,
+            &quot;hosp_addr&quot;: &quot;贵阳&quot;,
+            &quot;hosp_introduce&quot;: &quot;&quot;,
+            &quot;hosp_phone&quot;: &quot;&quot;,
+            &quot;level_id&quot;: &quot;0&quot;,
+            &quot;level_name&quot;: &quot;&quot;,
+            &quot;contacts_name&quot;: &quot;狒狒&quot;,
+            &quot;contacts_mobile&quot;: &quot;13123456788&quot;,
+            &quot;province_id&quot;: &quot;65535&quot;,
+            &quot;province_name&quot;: &quot;贵州省&quot;,
+            &quot;city_id&quot;: &quot;520100&quot;,
+            &quot;city_name&quot;: &quot;贵阳市&quot;,
+            &quot;area_id&quot;: &quot;520115&quot;,
+            &quot;area_name&quot;: &quot;观山湖区&quot;,
+            &quot;lng&quot;: &quot;0&quot;,
+            &quot;lat&quot;: &quot;0&quot;,
+            &quot;is_auth_hlwyy&quot;: &quot;1&quot;,
+            &quot;is_auth_sign&quot;: &quot;0&quot;,
+            &quot;is_auth_gzz&quot;: &quot;0&quot;,
+            &quot;is_auth_reg&quot;: &quot;0&quot;,
+            &quot;insert_dt&quot;: &quot;1498535183&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h5>0002 拉取医院详情</h5>
+<blockquote>
+<p>路由:/hospital/info  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<p><code>/hospital/info?hosp_id=88888888A</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">info</td>
+	<td align="left">详情</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">医院唯一标识</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">医院名称</td>
+	<td align="left">string</td>
+	<td align="left">医院名称</td>
+</tr>
+<tr>
+	<td align="left">hosp_image_url</td>
+	<td align="left">医院封面</td>
+	<td align="left">url</td>
+	<td align="left">医院封面图片下载地址</td>
+</tr>
+<tr>
+	<td align="left">hosp_page_url</td>
+	<td align="left">医院主页</td>
+	<td align="left">url</td>
+	<td align="left">医院主页网址</td>
+</tr>
+<tr>
+	<td align="left">hosp_introduce</td>
+	<td align="left">医院简介</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_phone</td>
+	<td align="left">医院电话</td>
+	<td align="left">string</td>
+	<td align="left">医院联系电话</td>
+</tr>
+<tr>
+	<td align="left">level_id</td>
+	<td align="left">医院等级ID</td>
+	<td align="left">int</td>
+	<td align="left">医院等级详见附录三</td>
+</tr>
+<tr>
+	<td align="left">level_name</td>
+	<td align="left">医院等级</td>
+	<td align="left">string</td>
+	<td align="left">医院等级名称</td>
+</tr>
+<tr>
+	<td align="left">contacts_name</td>
+	<td align="left">联系人</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">contacts_mobile</td>
+	<td align="left">联系电话</td>
+	<td align="left">string</td>
+	<td align="left">联系人联系电话</td>
+</tr>
+<tr>
+	<td align="left">province_id</td>
+	<td align="left">省/直辖市/自治区/特区id</td>
+	<td align="left">string(6)</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">province_name</td>
+	<td align="left">省/直辖市/自治区/特区名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">city_id</td>
+	<td align="left">市/自治州ID</td>
+	<td align="left">string(6)</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">city_name</td>
+	<td align="left">市/自治州名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">area_id</td>
+	<td align="left">区/县/县级市ID</td>
+	<td align="left">string</td>
+	<td align="left">国标行政编码</td>
+</tr>
+<tr>
+	<td align="left">area_name</td>
+	<td align="left">区/县/县级市名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_addr</td>
+	<td align="left">医院详情地址</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">lng</td>
+	<td align="left">经度</td>
+	<td align="left">float</td>
+	<td align="left">医院所属经度</td>
+</tr>
+<tr>
+	<td align="left">lat</td>
+	<td align="left">纬度</td>
+	<td align="left">float</td>
+	<td align="left">医院所属纬度</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;info&quot;: {
+        &quot;hosp_id&quot;: &quot;88888888A&quot;,
+        &quot;hosp_name&quot;: &quot;互联网医院&quot;,
+        &quot;hosp_image_url&quot;: &quot;&quot;,
+        &quot;hosp_page_url&quot;: &quot;https://www.hlwyy.cn&quot;,
+        &quot;hosp_addr&quot;: &quot;贵阳&quot;,
+        &quot;hosp_introduce&quot;: &quot;&quot;,
+        &quot;hosp_phone&quot;: &quot;&quot;,
+        &quot;level_id&quot;: &quot;0&quot;,
+        &quot;level_name&quot;: &quot;&quot;,
+        &quot;contacts_name&quot;: &quot;狒狒&quot;,
+        &quot;contacts_mobile&quot;: &quot;13123456788&quot;,
+        &quot;province_id&quot;: &quot;65535&quot;,
+        &quot;province_name&quot;: &quot;贵州省&quot;,
+        &quot;city_id&quot;: &quot;520100&quot;,
+        &quot;city_name&quot;: &quot;贵阳市&quot;,
+        &quot;area_id&quot;: &quot;520115&quot;,
+        &quot;area_name&quot;: &quot;观山湖区&quot;,
+        &quot;lng&quot;: &quot;0&quot;,
+        &quot;lat&quot;: &quot;0&quot;,
+        &quot;is_auth_hlwyy&quot;: &quot;1&quot;,
+        &quot;is_auth_sign&quot;: &quot;0&quot;,
+        &quot;is_auth_gzz&quot;: &quot;0&quot;,
+        &quot;is_auth_reg&quot;: &quot;0&quot;,
+        &quot;insert_dt&quot;: &quot;1498535183&quot;
+    }
+}
+</code></pre>
+
+<h5>0003 拉取医院科室列表</h5>
+<blockquote>
+<p>路由:/hospital/department/list  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">is_hosp</td>
+	<td align="left">是院内科室</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-不是 1-是</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数为筛选参数，无请勿传此参数</em></p>
+<h6>EG ######</h6>
+<p><code>/hospital/department/list?hosp_id=88888888A</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">list</td>
+	<td align="left">科室列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">一级科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">一级科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">child</td>
+	<td align="left">二级科室节点</td>
+	<td align="left">&nbsp;</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">二级科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_hid</td>
+	<td align="left">二级科室院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">二级科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;list&quot;: [
+        {
+            &quot;class_id&quot;: &quot;19&quot;,
+            &quot;class_name&quot;: &quot;内科&quot;,
+            &quot;child&quot;: [
+                {
+                    &quot;class_id&quot;: &quot;23&quot;,
+                    &quot;class_hid&quot;: &quot;&quot;,
+                    &quot;class_name&quot;: &quot;呼吸内科&quot;,
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<h5>0004 拉取科室详情</h5>
+<blockquote>
+<p>路由:/hospital/department/info  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数为筛选参数，无请勿传此参数</em></p>
+<h6>EG ######</h6>
+<p><code>/hospital/department/info?class_id=3</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">info</td>
+	<td align="left">科室详情</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_hid</td>
+	<td align="left">科室院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_profile</td>
+	<td align="left">科室简介</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">parent_class_id</td>
+	<td align="left">父级科室ID</td>
+	<td align="left">int</td>
+	<td align="left">一级科室为0</td>
+</tr>
+<tr>
+	<td align="left">parent_class_name</td>
+	<td align="left">父级科室名称</td>
+	<td align="left">string</td>
+	<td align="left">一级科室为“”</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">时间戳</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;info&quot;: {
+        &quot;hosp_id&quot;: &quot;100000001&quot;,
+        &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+        &quot;class_id&quot;: &quot;3&quot;,
+        &quot;class_hid&quot;: &quot;&quot;,
+        &quot;class_name&quot;: &quot;消化内科&quot;,
+        &quot;class_profile&quot;: &quot;&quot;,
+        &quot;parent_class_id&quot;: &quot;2&quot;,
+        &quot;parent_class_name&quot;: &quot;内科&quot;,
+        &quot;insert_dt&quot;: &quot;1498635730&quot;
+    }
+}
+</code></pre>
+
+<h5>0005 下载医院封面</h5>
+<blockquote>
+<p>路由:/hospital/cover/:hosp_id  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><em>注：下载图片无需传必填参数</em></p>
+<h6>EG ######</h6>
+<p><code>/hospital/cover/100000001</code></p>
+<h5>0006 拉取医生列表</h5>
+<blockquote>
+<p>路由:/doctor/list  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">offset</td>
+	<td align="left">偏移</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">偏移条数</td>
+</tr>
+<tr>
+	<td align="left">take</td>
+	<td align="left">拉取条数</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">大于0的整数</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string(9)</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数为筛选参数，无请勿传此参数</em></p>
+<h6>EG ######</h6>
+<p><code>/doctor/list?offset=0&amp;take=10&amp;hosp_id=100000001</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">total</td>
+	<td align="left">总条数</td>
+	<td align="left">int</td>
+	<td align="left">符合条件的总数</td>
+</tr>
+<tr>
+	<td align="left">list</td>
+	<td align="left">医生列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">医生唯一标识</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像</td>
+	<td align="left">url</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">所属医院ID</td>
+	<td align="left">int</td>
+	<td align="left">医生所属医院</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">所属医院名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称编号</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">phone_status</td>
+	<td align="left">手机验证状态</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;total&quot;: 41,
+    &quot;list&quot;: [
+        {
+            &quot;doc_uid&quot;: &quot;1001737&quot;,
+            &quot;doc_hid&quot;: &quot;&quot;,
+            &quot;doc_name&quot;: &quot;敖玲玲&quot;,
+            &quot;avatar_url&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;1&quot;,
+            &quot;hosp_id&quot;: &quot;100000001&quot;,
+            &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+            &quot;phone_num&quot;: &quot;13608532777&quot;,
+            &quot;id_card&quot;: &quot;522101197207083227&quot;,
+            &quot;job_title&quot;: &quot;健康管理师、营养师&quot;,
+            &quot;job_id&quot;: &quot;6&quot;,
+            &quot;certificate&quot;: &quot;199852110522101720708322&quot;,
+            &quot;employ_certificate&quot;: &quot;&quot;,
+            &quot;good_disease&quot;:&quot;&quot;,
+            &quot;is_auth_hlwyy&quot;: &quot;0&quot;,
+            &quot;is_auth_sign&quot;: &quot;0&quot;,
+            &quot;is_auth_gzz&quot;: &quot;0&quot;,
+            &quot;is_auth_reg&quot;: &quot;0&quot;,
+            &quot;phone_status&quot;: &quot;0&quot;,
+            &quot;insert_dt&quot;: &quot;1498635051&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h5>0007 批量拉取医生列表</h5>
+<blockquote>
+<p>路由:/doctor/batch/list  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">多少医生“,”隔开</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数为筛选参数，无请勿传此参数</em></p>
+<h6>EG ######</h6>
+<p><code>/doctor/batch/list?doc_uid=1001737,1001722</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">total</td>
+	<td align="left">总条数</td>
+	<td align="left">int</td>
+	<td align="left">符合条件的总数</td>
+</tr>
+<tr>
+	<td align="left">list</td>
+	<td align="left">医生列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">医生唯一标识</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像</td>
+	<td align="left">url</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">所属医院ID</td>
+	<td align="left">int</td>
+	<td align="left">医生所属医院</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">所属医院名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称编号</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">phone_status</td>
+	<td align="left">手机验证状态</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;total&quot;: 41,
+    &quot;list&quot;: [
+        {
+            &quot;doc_uid&quot;: &quot;1001737&quot;,
+            &quot;doc_hid&quot;: &quot;&quot;,
+            &quot;doc_name&quot;: &quot;敖玲玲&quot;,
+            &quot;avatar_url&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;1&quot;,
+            &quot;hosp_id&quot;: &quot;100000001&quot;,
+            &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+            &quot;phone_num&quot;: &quot;13608532777&quot;,
+            &quot;id_card&quot;: &quot;522101197207083227&quot;,
+            &quot;job_title&quot;: &quot;健康管理师、营养师&quot;,
+            &quot;job_id&quot;: &quot;6&quot;,
+            &quot;certificate&quot;: &quot;199852110522101720708322&quot;,
+            &quot;employ_certificate&quot;: &quot;&quot;,
+            &quot;good_disease&quot;:&quot;&quot;,
+            &quot;is_auth_hlwyy&quot;: &quot;0&quot;,
+            &quot;is_auth_sign&quot;: &quot;0&quot;,
+            &quot;is_auth_gzz&quot;: &quot;0&quot;,
+            &quot;is_auth_reg&quot;: &quot;0&quot;,
+            &quot;phone_status&quot;: &quot;0&quot;,
+            &quot;insert_dt&quot;: &quot;1498635051&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h5>0008 拉取医生详情</h5>
+<blockquote>
+<p>路由:/doctor/info  请求方式：GET</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">配合院内ID使用</td>
+</tr>
+<tr>
+	<td align="left">phone_num</td>
+	<td align="left">医生绑定手机号</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：doc_uid、doc_hid、phone_num不可能同时为空</em></p>
+<h6>EG ######</h6>
+<p><code>/doctor/info?doc_uid=1005316</code></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">info</td>
+	<td align="left">医生列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">医生唯一标识</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_pwd</td>
+	<td align="left">医生密码</td>
+	<td align="left">string(32)</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像</td>
+	<td align="left">url</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">所属医院ID</td>
+	<td align="left">int</td>
+	<td align="left">医生所属医院</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">所属医院名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称编号</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">phone_status</td>
+	<td align="left">手机验证状态</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+<tr>
+	<td align="left">class</td>
+	<td align="left">医生所属科室列表</td>
+	<td align="left"></td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_hid</td>
+	<td align="left">科室院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_profile</td>
+	<td align="left">科室简介</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">parent_class_id</td>
+	<td align="left">父级科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">parent_class_name</td>
+	<td align="left">父级科室名称</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_default</td>
+	<td align="left">是否默认科室</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0-否</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;info&quot;: {
+        &quot;doc_uid&quot;: &quot;1005316&quot;,
+        &quot;doc_hid&quot;: &quot;&quot;,
+        &quot;doc_name&quot;: &quot;大大泡泡糖&quot;,
+        &quot;doc_pwd&quot;: &quot;14e1b600b1fd579f47433b88e8d85291&quot;,
+        &quot;doc_level&quot;: &quot;2&quot;,
+        &quot;avatar_url&quot;: &quot;&quot;,
+        &quot;gender&quot;: &quot;2&quot;,
+        &quot;hosp_id&quot;: &quot;100000001&quot;,
+        &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+        &quot;phone_num&quot;: &quot;15896347562&quot;,
+        &quot;id_card&quot;: &quot;&quot;,
+        &quot;job_title&quot;: &quot;大医生&quot;,
+        &quot;job_id&quot;: &quot;8&quot;,
+        &quot;certificate&quot;: &quot;2313131231&quot;,
+        &quot;employ_certificate&quot;: &quot;&quot;,
+        &quot;good_disease&quot;: &quot;&quot;,
+        &quot;intro_desc&quot;: &quot;一首歌2&quot;,
+        &quot;is_auth_hlwyy&quot;: &quot;1&quot;,
+        &quot;is_auth_sign&quot;: &quot;0&quot;,
+        &quot;is_auth_gzz&quot;: &quot;0&quot;,
+        &quot;is_auth_reg&quot;: &quot;0&quot;,
+        &quot;phone_status&quot;: &quot;0&quot;,
+        &quot;insert_dt&quot;: &quot;1498635051&quot;,
+        &quot;class&quot;: [
+            {
+                &quot;class_id&quot;: &quot;4&quot;,
+                &quot;class_name&quot;: &quot;中医&quot;,
+                &quot;class_hid&quot;: &quot;&quot;,
+                &quot;parent_class_id&quot;: &quot;1&quot;,
+                &quot;parent_class_name&quot;: &quot;全科&quot;,
+                &quot;is_default&quot;: &quot;1&quot;
+            }
+        ]
+    }
+}
+</code></pre>
+
+<h5>0009 医生头像上传</h5>
+<blockquote>
+<p>路由:/doctor/avatar  请求方式：POST</p>
+</blockquote>
+<p><em>注：文件以流文件的形式传输，格式：png/jpg/gif</em></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">url</td>
+	<td align="left">医生列表</td>
+	<td align="left">url</td>
+	<td align="left">图片地址</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;url&quot;: &quot;https://yfcs-hfs.guijk.com/3016/5/1498642532369957/png/o/2&quot;
+}
+</code></pre>
+
+<h5>0010 添加医生信息</h5>
+<blockquote>
+<p>路由:/doctor/info/add  请求方式：POST</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">phone_num</td>
+	<td align="left">手机号</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生姓名</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">doc_pwd</td>
+	<td align="left">登录密码</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">两次MD5</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号必传</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像地址</td>
+	<td align="left">url</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必填</td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称ID</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必填</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">class_list</td>
+	<td align="left">医生所属科室</td>
+	<td align="left">json</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必传 [{&quot;class_id&quot;:&quot;1&quot;,&quot;is_default&quot;:0}]</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻互联网医院必传</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数无请勿传此参数</em></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">info</td>
+	<td align="left">医生列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">医生唯一标识</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_pwd</td>
+	<td align="left">医生密码</td>
+	<td align="left">string(32)</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像</td>
+	<td align="left">url</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">所属医院ID</td>
+	<td align="left">int</td>
+	<td align="left">医生所属医院</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">所属医院名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称编号</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">phone_status</td>
+	<td align="left">手机验证状态</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+<tr>
+	<td align="left">class</td>
+	<td align="left">医生所属科室列表</td>
+	<td align="left"></td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_hid</td>
+	<td align="left">科室院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_profile</td>
+	<td align="left">科室简介</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">parent_class_id</td>
+	<td align="left">父级科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">parent_class_name</td>
+	<td align="left">父级科室名称</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_default</td>
+	<td align="left">是否默认科室</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0-否</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;info&quot;: {
+        &quot;doc_uid&quot;: &quot;1005316&quot;,
+        &quot;doc_hid&quot;: &quot;&quot;,
+        &quot;doc_name&quot;: &quot;大大泡泡糖&quot;,
+        &quot;doc_pwd&quot;: &quot;14e1b600b1fd579f47433b88e8d85291&quot;,
+        &quot;doc_level&quot;: &quot;2&quot;,
+        &quot;avatar_url&quot;: &quot;&quot;,
+        &quot;gender&quot;: &quot;2&quot;,
+        &quot;hosp_id&quot;: &quot;100000001&quot;,
+        &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+        &quot;phone_num&quot;: &quot;15896347562&quot;,
+        &quot;id_card&quot;: &quot;&quot;,
+        &quot;job_title&quot;: &quot;大医生&quot;,
+        &quot;job_id&quot;: &quot;8&quot;,
+        &quot;certificate&quot;: &quot;2313131231&quot;,
+        &quot;employ_certificate&quot;: &quot;&quot;,
+        &quot;good_disease&quot;: &quot;&quot;,
+        &quot;intro_desc&quot;: &quot;一首歌2&quot;,
+        &quot;is_auth_hlwyy&quot;: &quot;1&quot;,
+        &quot;is_auth_sign&quot;: &quot;0&quot;,
+        &quot;is_auth_gzz&quot;: &quot;0&quot;,
+        &quot;is_auth_reg&quot;: &quot;0&quot;,
+        &quot;phone_status&quot;: &quot;0&quot;,
+        &quot;insert_dt&quot;: &quot;1498635051&quot;,
+        &quot;class&quot;: [
+            {
+                &quot;class_id&quot;: &quot;4&quot;,
+                &quot;class_name&quot;: &quot;中医&quot;,
+                &quot;class_hid&quot;: &quot;&quot;,
+                &quot;parent_class_id&quot;: &quot;1&quot;,
+                &quot;parent_class_name&quot;: &quot;全科&quot;,
+                &quot;is_default&quot;: &quot;1&quot;
+            }
+        ]
+    }
+}
+</code></pre>
+
+<h5>0011 修改医生信息</h5>
+<blockquote>
+<p>路由:/doctor/info/upd  请求方式：POST</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">医院ID</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生姓名</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">N</td>
+	<td align="left">0-未入驻 1-已入住</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号必传</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像地址</td>
+	<td align="left">url</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称ID</td>
+	<td align="left">int</td>
+	<td align="left">N</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻挂号和互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻互联网医院必传</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">N</td>
+	<td align="left">入驻互联网医院必传</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：非必传参数无请勿传此参数</em></p>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">info</td>
+	<td align="left">医生列表</td>
+	<td align="left"></td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int(7,8)</td>
+	<td align="left">医生唯一标识</td>
+</tr>
+<tr>
+	<td align="left">doc_hid</td>
+	<td align="left">医生院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_name</td>
+	<td align="left">医生名字</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_pwd</td>
+	<td align="left">医生密码</td>
+	<td align="left">string(32)</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_level</td>
+	<td align="left">医生类型</td>
+	<td align="left">int</td>
+	<td align="left">1-普通 2-专家</td>
+</tr>
+<tr>
+	<td align="left">avatar_url</td>
+	<td align="left">医生头像</td>
+	<td align="left">url</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">gender</td>
+	<td align="left">医生性别</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">hosp_id</td>
+	<td align="left">所属医院ID</td>
+	<td align="left">int</td>
+	<td align="left">医生所属医院</td>
+</tr>
+<tr>
+	<td align="left">hosp_name</td>
+	<td align="left">所属医院名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称编号</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">certificate</td>
+	<td align="left">资格证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">employ_certificate</td>
+	<td align="left">从业证书编号</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">good_disease</td>
+	<td align="left">擅长疾病</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">intro_desc</td>
+	<td align="left">介绍说明</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_auth_hlwyy</td>
+	<td align="left">是否入驻互联网医院</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_sign</td>
+	<td align="left">是否入驻签约平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_gzz</td>
+	<td align="left">是否入驻公卫平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">is_auth_reg</td>
+	<td align="left">是否入驻挂号平台</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">phone_status</td>
+	<td align="left">手机验证状态</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0否</td>
+</tr>
+<tr>
+	<td align="left">insert_dt</td>
+	<td align="left">写入时间</td>
+	<td align="left">int</td>
+	<td align="left">秒级时间戳</td>
+</tr>
+<tr>
+	<td align="left">class</td>
+	<td align="left">医生所属科室列表</td>
+	<td align="left"></td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_hid</td>
+	<td align="left">科室院内ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_name</td>
+	<td align="left">科室名称</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">class_profile</td>
+	<td align="left">科室简介</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">parent_class_id</td>
+	<td align="left">父级科室ID</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">parent_class_name</td>
+	<td align="left">父级科室名称</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">is_default</td>
+	<td align="left">是否默认科室</td>
+	<td align="left">int(1)</td>
+	<td align="left">1-是 0-否</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;info&quot;: {
+        &quot;doc_uid&quot;: &quot;1005316&quot;,
+        &quot;doc_hid&quot;: &quot;&quot;,
+        &quot;doc_name&quot;: &quot;大大泡泡糖&quot;,
+        &quot;doc_pwd&quot;: &quot;14e1b600b1fd579f47433b88e8d85291&quot;,
+        &quot;doc_level&quot;: &quot;2&quot;,
+        &quot;avatar_url&quot;: &quot;&quot;,
+        &quot;gender&quot;: &quot;2&quot;,
+        &quot;hosp_id&quot;: &quot;100000001&quot;,
+        &quot;hosp_name&quot;: &quot;贵阳互联网医院&quot;,
+        &quot;phone_num&quot;: &quot;15896347562&quot;,
+        &quot;id_card&quot;: &quot;&quot;,
+        &quot;job_title&quot;: &quot;大医生&quot;,
+        &quot;job_id&quot;: &quot;8&quot;,
+        &quot;certificate&quot;: &quot;2313131231&quot;,
+        &quot;employ_certificate&quot;: &quot;&quot;,
+        &quot;good_disease&quot;: &quot;&quot;,
+        &quot;intro_desc&quot;: &quot;一首歌2&quot;,
+        &quot;is_auth_hlwyy&quot;: &quot;1&quot;,
+        &quot;is_auth_sign&quot;: &quot;0&quot;,
+        &quot;is_auth_gzz&quot;: &quot;0&quot;,
+        &quot;is_auth_reg&quot;: &quot;0&quot;,
+        &quot;phone_status&quot;: &quot;0&quot;,
+        &quot;insert_dt&quot;: &quot;1498635051&quot;,
+        &quot;class&quot;: [
+            {
+                &quot;class_id&quot;: &quot;4&quot;,
+                &quot;class_name&quot;: &quot;中医&quot;,
+                &quot;class_hid&quot;: &quot;&quot;,
+                &quot;parent_class_id&quot;: &quot;1&quot;,
+                &quot;parent_class_name&quot;: &quot;全科&quot;,
+                &quot;is_default&quot;: &quot;1&quot;
+            }
+        ]
+    }
+}
+</code></pre>
+
+<h5>0012 修改医生所属科室</h5>
+<blockquote>
+<p>路由:/doctor/info/class  请求方式：POST</p>
+</blockquote>
+<h6>入参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">op_type</td>
+	<td align="left">操作</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">op_type 1-新增 2-修改 3-删除</td>
+</tr>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医院ID</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">class_id</td>
+	<td align="left">科室ID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">is_default</td>
+	<td align="left">默认科室</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">1-默认 2-下载</td>
+</tr>
+</tbody>
+</table>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<p><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;
+}</code></p>
+<h5>0013 下载医生头像</h5>
+<blockquote>
+<p>路由:/doctor/avatar/:doc_uid  请求方式：GET</p>
+</blockquote>
+<h6>入参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生头像</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：下载头像不需要传必填参数</em></p>
+<h5>0014 拉取医生职称列表</h5>
+<blockquote>
+<p>路由:/doctor/job/list  请求方式：GET</p>
+</blockquote>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">list</td>
+	<td align="left">列表</td>
+	<td align="left"></td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">job_id</td>
+	<td align="left">职称ID</td>
+	<td align="left">int</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">job_title</td>
+	<td align="left">职称</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;list&quot;: [
+        {
+            &quot;job_id&quot;: &quot;1&quot;,
+            &quot;job_title&quot;: &quot;主任医师&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h5>0015 修改医生登录密码</h5>
+<blockquote>
+<p>路由:/doctor/password/upd  请求方式：POST</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">old_doc_pwd</td>
+	<td align="left">旧密码</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">new_doc_pwd</td>
+	<td align="left">新密码</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;
+}
+</code></pre>
+
+<h5>0016 医生登录</h5>
+<blockquote>
+<p>路由:/doctor/login  请求方式：POST</p>
+</blockquote>
+<h6>入参 ######</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">字段</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">必传</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">doc_uid</td>
+	<td align="left">医生UID</td>
+	<td align="left">int</td>
+	<td align="left">Y</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">doc_pwd</td>
+	<td align="left">密码</td>
+	<td align="left">string</td>
+	<td align="left">Y</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>出参</h6>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">code</td>
+	<td align="left">状态码</td>
+	<td align="left">int</td>
+	<td align="left">详见附录二</td>
+</tr>
+<tr>
+	<td align="left">message</td>
+	<td align="left">状态描述</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6>EG ######</h6>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;message&quot;: &quot;success&quot;
+}
+</code></pre>
+
+<h5>0017 重置登录密码获取验证码</h5>
+<blockquote>
+<p>路由:/doctor/password/reset  请求方式：GET</p>
+</blockquote>
+<h5>0018 重置登录密码</h5>
+<blockquote>
+<p>路由:/doctor/password/reset  请求方式：POST</p>
+</blockquote>
+<h4>通知机制</h4>
+<blockquote>
+<p>一账户、一地址、多通知、按授权</p>
+</blockquote>
+<h5>一账号</h5>
+<p>每个接入平台分配一个账户（app_id）和密钥(app_key)</p>
+<h5>一地址</h5>
+<p>每个账号配置一个通知地址，当前用户定制的通知类型发生改变时往账号配置的通知地址通知变动消息；</p>
+<h5>多通知</h5>
+<p>现阶段通知内容类型有：医院信息、科室信息、医生信息、医生所属科室
+对应t_sys_platform_user_cfg.notify_type</p>
+<h6>EG ######</h6>
+<p><code>//接收通知类型:医院信息和医生信息
+1010000000
+//接收通知类型：医院信息、科室信息、医生信息、医生所属科室
+1111000000</code></p>
+<h5>按授权</h5>
+<p>每个平台只接收自己平台相关的信息，如预约挂号我只接收与挂号平台有关的数据；若需要接收多个平台的数据，“,”隔开配置多个授权即可。</p>
+<h6>EG ######</h6>
+<p><code>//需要接收挂号和互联网医院相关数据
+is_auth_reg,is_auth_hlwyy</code></p>
+<h5>通知机制</h5>
+<ul>
+<li>
+平台会把结果通知各个授权账号，各个子平台需要接收处理，并返回应答；应答数据结构：
+<code>{
+&quot;code&quot;:0,//0-为处理成功
+&quot;message&quot;:&quot;&quot;
+}</code>
+</li>
+<li>如果平台收到子平台的应答不是成功或超时，平台认为通知失败，平台会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但平台不保证通知最终能成功。 （通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒） </li>
+<li>注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。</li>
+<li>注意：同样的通知可能会多次发送给子平台系统。子平台系统必须能够正确处理重复的通知。</li>
+<li>特别提醒：子平台系统对于通知的内容一定要做签名验证，防止数据泄漏导致出现“假通知”。</li>
+</ul>
+<h5>通知消息结构</h5>
+<blockquote>
+<p>动作内容：json流数据，请求方式：POST</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+	<th align="left">参数</th>
+	<th align="left">中文</th>
+	<th align="left">类型</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">app_id</td>
+	<td align="left">授权账号</td>
+	<td align="left">int</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">task_id</td>
+	<td align="left">任务ID</td>
+	<td align="left">string</td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">notify_id</td>
+	<td align="left">通知ID</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+<tr>
+	<td align="left">nonce_str</td>
+	<td align="left">随机字符串</td>
+	<td align="left">string</td>
+	<td align="left">调和参数</td>
+</tr>
+<tr>
+	<td align="left">timestamp</td>
+	<td align="left">请求时间</td>
+	<td align="left">int</td>
+	<td align="left">当前时间戳</td>
+</tr>
+<tr>
+	<td align="left">content</td>
+	<td align="left">请求内容</td>
+	<td align="left"></td>
+	<td align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left">sign</td>
+	<td align="left">签名内容</td>
+	<td align="left">string</td>
+	<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><em>注意：通知ID，医院信息:HOS<em>{HOSP_ID} 详见：医院详情接口； 科室信息:DEP<em>{HOSP_ID}</em>{DEPT_ID} 详见：科室详情接口； 医生信息:DOC</em>{HOSP_ID}<em>{DEPT_ID} 详见：医生详情接口； 医生所属科室：DCC</em>{HOSP_ID}_{DEPT_ID} 详见：医生详情医生所属科室</em></p>
+<pre><code>{
+    &quot;app_id&quot;:&quot;10000&quot;
+    &quot;task_id&quot;:&quot;&quot;,//任务ID
+    &quot;notify_id&quot;:&quot;HOS_100000001&quot;,//通知消息ID
+    &quot;content&quot;:{
+    ....
+    },
+    &quot;sign&quot;:&quot;&quot;
+}
+</code></pre>
+
+<h4>附录</h4>
+<h5>附录一</h5>
+<p><strong>API请求方式</strong></p>
+<ul>
+<li>必填参数使用Headers传参</li>
+</ul>
+<h6>EG</h6>
+<pre><code>app-id:10000
+noncie-str:342hh1322g3eaadad213
+timestamp:1498025830
+sign:f1385f014e5e36531c76214c6fa5fa0a
+</code></pre>
+
+<ul>
+<li>接口业务参数</li>
+</ul>
+<p>业务参数按接口定义使用POST或者GET请求</p>
+<ul>
+<li>
+<p>签名</p>
+</li>
+<li>
+<p>请求的必填参数与接口定义的POST或者GET请求参数，需要根据参数名=参数值的格式，按首字母（ASCII值大小）排序，若遇到相同字符，则判断第二个字符，以此类推，待签名字符串需 要以“参数名 1=参数值 1&amp;参数名 2=参数值 2&amp;....&amp;参 数名 N=参数值 N”的规则进行拼接。</p>
+</li>
+<li>在对请求的参数做签名时，这些参数必须来源于请求参 数列表，并且除去列表中的参数 sign。</li>
+<li>在对请求的参数做签名时，对于请求参数列表中那些可 空的参数，如果选择使用它们，那么这些参数的参数值 必须不能为空或空值。</li>
+<li>待签名数据应该是参数原始值而不是 url encoding 之 后的值，例如:调用某接口需要对请求参数 email 进行 数字签名，那么待签名数据应该是 email=test@msn.com，而不是 email=test%40msn.com。</li>
+<li>在字符串后拼接“&amp;key=密钥”</li>
+<li>将最后拼接字符串使用MD5加密</li>
+</ul>
+<h5>附录二</h5>
+<p><strong>状态码表</strong></p>
+<table>
+<thead>
+<tr>
+	<th align="left">状态码</th>
+	<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">0</td>
+	<td align="left">处理成功</td>
+</tr>
+<tr>
+	<td align="left">-1</td>
+	<td align="left">一般错误</td>
+</tr>
+<tr>
+	<td align="left">-2</td>
+	<td align="left">数据处理错误</td>
+</tr>
+<tr>
+	<td align="left">-102</td>
+	<td align="left">无数据</td>
+</tr>
+<tr>
+	<td align="left">-998</td>
+	<td align="left">缺少参数</td>
+</tr>
+<tr>
+	<td align="left">-997</td>
+	<td align="left">参数错误</td>
+</tr>
+<tr>
+	<td align="left">-999</td>
+	<td align="left">系统错误</td>
+</tr>
+<tr>
+	<td align="left">-996</td>
+	<td align="left">签名错误</td>
+</tr>
+<tr>
+	<td align="left">-995</td>
+	<td align="left">请求过期</td>
+</tr>
+<tr>
+	<td align="left">-994</td>
+	<td align="left">未获授权</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

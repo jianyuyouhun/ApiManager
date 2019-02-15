@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>互联网医院消息推送方案</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table {
+  border-collapse:collapse;
+}
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style>red{color:red}</style>
+</head>
+<body>
+<h3>一、互联网医院问诊队列</h3>
+<h4>1、nginx push</h4>
+<p>该推送方式只向IPTV推送，互联网医院已全部采用websocket</p>
+<blockquote>
+<p>主要有下列业务类型 <br />
+1-2-3 添加、删除、结束 100-中药处方<br />
+4- 医生离开候诊室<br />
+5- 医生发起问诊<br />
+6- 处方<br />
+7- 医生结束问诊 <br />
+3，8- 队列变化消息<br />
+9- 医生掉线 <br />
+10- 转诊通知 <br />
+14- 健康建议<br />
+聊天消息 1- doc_id_user_id  
+</p>
+</blockquote>
+<pre><code>\Common\push_message(int $type, int $doc_id, array $data)
+</code></pre>
+
+<h4>2、websocket</h4>
+<p>目前面向互联网医院web端进行推送</p>
+<blockquote>
+<p>主要有下列业务类型 <br />
+<code>ws_connect_response</code> <strong><em>该类型是websocket服务器返回的，主要做初始化工作（在客户端链接到websocket服务器的时候触发）</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_connect_response&quot;,  //链接回调
+    &quot;client_id&quot;:&quot;7f0000010b5600000027&quot; // 当前连接客户端ID 在 ws_bind_request 用来认证
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_on_live_request</code><font color="red">（弃用）</font> <strong><em>该类型是websocket服务器返回的，要求客户端进行心跳回报（在客户端链接到websocket服务器每[pingIntervalpingNotResponseLimit]执行一次,在规定的时间客户端没有响应心跳包，那么认为客户端掉线，将执行<code>onClose</code>回调）</em></strong>   
+</p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_on_live_request&quot; // 服务端心跳检测
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_bind_request</code> <strong><em>客户端向websocket服务器发送，进行UID和client_id进行绑定；<font color="red">①当uType为iptv-user时UID可以传空②新增login_auth_key字段</font></em></strong> </p>
+</blockquote>
+<p><em>login_auth_key 采用 client_id，app_id，app_key 拼接字符串 之后进行MD5加密之后的值</em>
+<em>如果设置了 login_auth_key 那么后续不需要在进行认证</em></p>
+<blockquote>
+<p><strong><em>uType</em></strong> <br/>
+<strong><em>互联网医院医生-&gt;doctor</em></strong><br/>
+<strong><em>互联网医院用户-&gt;user</em></strong><br/>
+<strong><em>IPTV用户-&gt;iptv-user</em></strong><br/>
+<strong><em>39医生-&gt;39-doctor</em></strong><br/>
+<strong><em>落地电话-&gt;landline</em></strong><br/>
+<red>group 普通问诊以互联网医院医生ID为小组ID  <br>IPTV视频问专家以订单号为小组ID</red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_bind_request&quot;, 
+    &quot;uid&quot;:&quot;1003166&quot;, // 用户ID
+    &quot;uType&quot;:&quot;doctor&quot;, // 用户类型
+    &quot;group&quot;:&quot;1003166&quot;, // 用户小组 （可为空）
+    &quot;rand_code&quot;:&quot;o2r07v3kj29boagd6pz1qt43lgapp602&quot;, //如果需要互踢 那么该字段不能为空（可为空）
+    &quot;login_auth_key&quot;:&quot;&quot;, // 链接认证标识
+    &quot;ext_group&quot;:&quot;&quot; // 扩展小组 可以是字符串也可以是数组 （可为空）
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_bind_response</code> <strong><em>是websocket服务器返回的，描述客户端UID已经绑定到websocket服务器<font color="red">①当uType为iptv-user时会返回 user_id</font></em></strong>  
+</p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_bind_response&quot;,
+    &quot;message&quot;:&quot;uid已绑定到webSocket&quot;,
+    &quot;user_id&quot;:&quot;&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_kick_down_response</code><strong><em>该类型是websocket服务器返回的，设置为医生智能在一个web端登录（如果该医生队列中有用户或者已经在问诊中则不能进行登录）</em></strong>   
+</p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;: &quot;ws_kick_down_response&quot;,
+    &quot;message&quot;: &quot;你的账号在别处登录&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_user_join</code> <strong><em>用户向医生端发送加入房间的消息（在用户加入到医生问诊队列中）</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;count&quot;:1, // 队列人数
+    &quot;docId&quot;:&quot;1003166&quot;, // 医生ID
+    &quot;uid&quot;:&quot;1505360731859648&quot;, // 用户ID
+    &quot;uname&quot;:&quot;游客&quot;, //用户姓名
+    &quot;utype&quot;:0, // 用户类型
+    &quot;idt&quot;:&quot;2017-09-14 11:45:33&quot;, // 插入时间
+    &quot;inquiry_info&quot;:&quot;&quot;, // 问诊信息
+    &quot;ref_doc_name&quot;:&quot;&quot;, // 专家医生
+    &quot;ugender&quot;:&quot;男&quot;, // 用户性别
+    &quot;uage&quot;:&quot;&quot;, // 用户年龄
+    &quot;remarks&quot;:&quot;&quot;, // 备注
+    &quot;r_doc_name&quot;:&quot;&quot;, // 转诊医生
+    &quot;is_first&quot;:true, // 是否第一位
+    &quot;type&quot;:&quot;notice_user_join_queue&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_user_logout</code><strong><em>用户掉线会向该医生队列所有成员发送(队列发生变化)</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;docId&quot;:&quot;1003166&quot;, // 医生ID
+    &quot;uid&quot;:&quot;1505360731859648&quot;, // 用户ID
+    &quot;count&quot;:0, // 队列人数
+    &quot;user&quot;:&quot;null&quot;, // 队列列表
+    &quot;user_id&quot;:&quot;1505360731859648&quot;, // 用户ID 兼容处理
+    &quot;type&quot;:&quot;notice_user_logout&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_user_end_treatment</code> <strong><em>用户结束问诊会向该医生队列所有成员发送(队列发生变化)</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;inquiry_id&quot;:&quot;&quot;,
+    &quot;type&quot;:&quot;notice_user_end_treatment&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_user_end_queue</code> <strong><em>结束排队会向该医生队列所有成员发送(队列发生变化)</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;docId&quot;:&quot;1003166&quot;, // 医生ID
+    &quot;uid&quot;:&quot;1505361584720219&quot;, // 用户ID
+    &quot;count&quot;:1, // 队列人数
+    &quot;user&quot;:&quot;[{&quot;user_id&quot;:&quot;1002929&quot;,&quot;order&quot;:1,&quot;user_name&quot;:&quot;\u5c0f\u5c0f&quot;,&quot;phone_number&quot;:&quot;15085705300&quot;,&quot;gender&quot;:&quot;\u7537&quot;,&quot;age&quot;:null,&quot;source&quot;:&quot;1&quot;,&quot;doc_id&quot;:&quot;1003166&quot;}]&quot;, // 队列列表
+    &quot;user_id&quot;:&quot;1505361584720219&quot;,
+    &quot;type&quot;:&quot;notice_user_end_queue&quot;
+}  
+</code></pre>
+
+<blockquote>
+<p><code>notice_user_msg</code><strong><em>用户向医生发送聊天消息</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;sender&quot;:&quot;游客&quot;, // 发送方
+    &quot;timer&quot;:&quot;13:26:37&quot;, // 时间
+    &quot;msg&quot;:&quot;有点流鼻涕&quot;, // 消息内容
+    &quot;type&quot;:&quot;notice_user_msg&quot;
+}  
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_join_treatment</code><strong><em>医生进行接诊向问诊用户发起加入问诊房间</em></strong>   
+</p>
+</blockquote>
+<pre><code>{
+    &quot;docId&quot;:&quot;1003166&quot;, // 医生ID
+    &quot;inquiryId&quot;:&quot;1505361210244325&quot;, // 问诊ID （也是视频房间ID）
+    &quot;uid&quot;:&quot;1505361193324609&quot;, // 用户ID
+    &quot;domain&quot;:&quot;test-webrtc.hlwyy.cn&quot;, // 视频地址
+    &quot;stun_domain&quot;:&quot;test-webrtc.hlwyy.cn&quot;,// 视频地址
+    &quot;port&quot;:&quot;3004&quot;, // 视频地址 端口
+    &quot;stun_port&quot;:&quot;3478&quot;, // 视频地址 端口
+    &quot;type&quot;:&quot;notice_doctor_join_treatment&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_end_treatment</code><strong><em>医生和用户可以相互发起结束问诊（同时其他队列用户发送<code>endTreatment</code>消息）</em></strong>   
+</p>
+</blockquote>
+<pre><code>{
+    &quot;inquiry_id&quot;:&quot;&quot;, // 问诊ID （也是视频房间ID）
+    &quot;type&quot;:&quot;notice_doctor_end_treatment&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_logout</code><strong><em>医生掉线或者离开候诊室会向所有该医生队列用户发送</em></strong>  
+</p>
+</blockquote>
+<pre><code>{
+    &quot;doc_id&quot;:&quot;1003166&quot;, // 医生ID
+    &quot;type&quot;:&quot;notice_doctor_logout&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_leave_room</code>  <strong><em>医生掉线或者离开候诊室会向所有该医生队列用户发送</em></strong> </p>
+</blockquote>
+<pre><code>{
+    &quot;doc_id&quot;:&quot;103166&quot;; // 医生ID
+    &quot;type&quot;:&quot;notice_doctor_leave_room&quot;
+} 
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_health_advice</code><strong><em>医生端向用户发送健康建议</em></strong>   
+</p>
+</blockquote>
+<pre><code>{
+    &quot;inquiry_id&quot;: &quot;&quot;, // 问诊ID （也是视频房间ID）
+    &quot;uid&quot;: &quot;&quot;, // 用户ID
+    &quot;health_id&quot;: &quot;&quot;, // 健康建议ID
+    &quot;type&quot;:&quot;notice_doctor_health_advice&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_prescription</code><strong><em>医生端向用户发送处方</em></strong>  
+</p>
+</blockquote>
+<pre><code>{
+    &quot;docId&quot;: &quot;&quot;, // 医生ID
+    &quot;uid&quot;: &quot;&quot;, // 用户ID
+    &quot;pid&quot;: &quot;&quot;, // 处方ID
+    &quot;preType&quot;: &quot;&quot;, // 处方类型 --prescription（西药）  --chinese_pre（中药）
+    &quot;type&quot;: &quot;notice_doctor_prescription&quot;
+} 
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_referral</code><strong><em>医生端向用户发送转诊消息 <font color=red>①新增转诊医生信息</font></em></strong> </p>
+</blockquote>
+<pre><code>{
+    &quot;docId&quot;: &quot;&quot;, // 医生ID
+    &quot;uid&quot;: &quot;&quot;, // 用户ID
+    &quot;tdcId&quot;: &quot;&quot;, // 转诊医生ID
+    &quot;tdName&quot;: &quot;&quot;, // 转诊医生姓名
+    &quot;hoslName&quot;: &quot;&quot;, // 转诊医生医院名
+    &quot;tdocInfo&quot;: &quot;&quot;,  // 转诊医生信息
+    &quot;user&quot;: &quot;&quot;, // 队列列表
+    &quot;inquiry_id&quot;: &quot;&quot;, // 问诊ID
+    &quot;type&quot;: &quot;notice_doctor_referral&quot;,
+}
+</code></pre>
+
+<blockquote>
+<p><code>notice_doctor_msg</code> <strong><em>医生向用户发送聊天消息</em></strong>  
+</p>
+</blockquote>
+<pre><code>{
+    &quot;sender&quot;:&quot;小小医生&quot;, // 发送方
+    &quot;timer&quot;:&quot;13:27:20&quot;, // 时间
+    &quot;msg&quot;:&quot;您像这样的状态持续多久了？&quot;, // 消息内容
+    &quot;type&quot;:&quot;notice_doctor_msg&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_ping_request</code> <strong><em>客户端向服务端发送心跳类型</em></strong></p>
+</blockquote>
+<pre><code>{type:&quot;ws_ping_request&quot;}
+</code></pre>
+
+<blockquote>
+<p><code>ws_ping_response</code> <strong><em>服务端响应客户端心跳类型</em></strong></p>
+</blockquote>
+<pre><code>{type:&quot;ws_ping_response&quot;}
+</code></pre>
+
+<blockquote>
+<p><red><code>notice_39_doctor_info</code><strong><em>发送医生信息</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    type:&quot;notice_39_doctor&quot;
+    clinic_id:&quot;666&quot; // 门诊ID
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>notice_pay_order_info</code><strong><em>通知支付订单</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    type:&quot;notice_pay_order_info&quot;
+    appointment_id:&quot;1231&quot; // 订单ID
+}
+</code></pre>
+
+<h5>*如果不是在白名单(互联网医院)的用户连接,需要在绑定用户信息之后进行校验连接合法性</h5>
+<blockquote>
+<p><code>ws_authenticate_request</code>  <strong><em>客户端向服务端发起认证请求</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;app_id&quot;:&quot;&quot;,
+    &quot;app_key&quot;:&quot;&quot;,
+    &quot;type&quot;:&quot;ws_authenticate_request&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_authenticate_response</code> <strong><em>认证结果</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;msg&quot;:&quot;认证成功&quot;,
+    &quot;auth_status&quot;:&quot;true&quot;,
+    &quot;type&quot;:&quot;ws_authenticate_response&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_queue_add_request</code> <strong><em>加入队列请求</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;user_id&quot;, // 用户ID
+    &quot;doc_id&quot;, // 医生ID
+    &quot;user_name&quot;, // 用户姓名
+    &quot;age&quot;, // 年龄
+    &quot;gender&quot;, // 性别
+    &quot;phone_number&quot;, // 手机号
+    &quot;iptv_user_id&quot;, // IPTV 用户ID
+    &quot;from&quot;, //入口
+    &quot;land_line_phone&quot;, // 落地电话号码
+    &quot;type&quot;:&quot;ws_queue_add_request&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_queue_add_response</code> <strong><em>加入队列请求结果</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;code&quot;:&quot;0&quot;, // 状态码
+    &quot;message&quot;:&quot;&quot;, // 信息
+    &quot;order&quot;:&quot;&quot;, // 当前第几位
+    &quot;type&quot;:&quot;ws_queue_add_response&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_queue_leave_request</code> <strong><em>离开队列请求</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;user_id&quot;:&quot;&quot; // 用户ID
+    &quot;type&quot;:&quot;ws_queue_leave_request&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_queue_leave_response</code> <strong><em>离开队列结果</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;code&quot;:&quot;0&quot;,
+    &quot;message&quot;:&quot;&quot;,
+    &quot;order&quot;:&quot;&quot;,  // 当前第几位
+    &quot;list&quot;:&quot;&quot;, // 队列列表
+    &quot;type&quot;:&quot;ws_queue_leave_response&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_inquiry_leave_request</code> <strong><em>结束问诊请求</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;user_id&quot;:&quot;&quot;, // 用户ID
+    &quot;inquiry_id&quot;:&quot;&quot;, // 问诊ID
+    &quot;type&quot;:&quot;ws_inquiry_leave_request&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><code>ws_inquiry_leave_response</code> <strong><em>结束问诊结果</em></strong></p>
+</blockquote>
+<pre><code>{
+    &quot;code&quot;:&quot;0&quot;,
+    &quot;message&quot;:&quot;&quot;,
+    &quot;list&quot;:&quot;&quot;, // 队列列表
+    &quot;type&quot;:&quot;ws_inquiry_leave_response&quot;
+}
+</code></pre>
+
+<p><red> <em>应用于多方通话</em> </red></p>
+<blockquote>
+<p><red><code>ws_record_stream_id_request</code> <strong><em>记录视频流ID请求</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_record_stream_id_request&quot;,
+    &quot;stream_id&quot;:&quot;38291209292736770&quot;,  // 视频流ID
+    &quot;inquiry_id&quot;:&quot;123456&quot;,      // 房间ID
+    &quot;video_enable&quot;:true,   // 是否开启摄像头
+    &quot;mic_enable&quot;: true      // 是否开启麦克风
+}
+// 如果是只需要订阅
+{
+    &quot;type&quot;:&quot;ws_record_stream_id_request&quot;,
+    &quot;inquiry_id&quot;:&quot;32131&quot;, //房间ID
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_record_stream_id_response</code> <strong><em>记录视频流ID结果</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_record_stream_id_response&quot;,
+    &quot;list&quot;:{
+        &quot;iptv-user&quot;:{ // 用户类型
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;, // 视频流ID
+            &quot;user_id&quot;:&quot;1231&quot;, // 用户ID
+            &quot;video_enable&quot;:true,   // 是否开启摄像头
+            &quot;mic_enable&quot;: true      // 是否开启麦克风
+        },
+        &quot;doctor&quot;:{
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;,
+            &quot;user_id&quot;:&quot;1231&quot;,
+            &quot;video_enable&quot;:true,   
+            &quot;mic_enable&quot;: true     
+        },
+        &quot;39-doctor&quot;:{
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;,
+            &quot;user_id&quot;:&quot;1231&quot;,
+            &quot;video_enable&quot;:true,   
+            &quot;mic_enable&quot;: true    
+        }
+    }
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>notice_remote_stream_id</code> <strong><em>通知远程视频流ID</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;notice_remote_stream_id&quot;,
+    &quot;inquiry_id&quot;:&quot;32131&quot;, //房间ID
+    &quot;list&quot;:{
+        &quot;iptv-user&quot;:{ // 用户类型
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;, // 视频流ID
+            &quot;user_id&quot;:&quot;1231&quot;, // 用户ID
+            &quot;video_enable&quot;:true,   // 是否开启摄像头
+            &quot;mic_enable&quot;: true      // 是否开启麦克风
+        },
+        &quot;doctor&quot;:{
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;,
+            &quot;user_id&quot;:&quot;1231&quot;,
+            &quot;video_enable&quot;:true,   
+            &quot;mic_enable&quot;: true     
+        },
+        &quot;39-doctor&quot;:{
+            &quot;stream_id&quot;:&quot;551813847569800260&quot;,
+            &quot;user_id&quot;:&quot;1231&quot;,
+            &quot;video_enable&quot;:true,   
+            &quot;mic_enable&quot;: true    
+        }
+    }
+}
+</code></pre>
+
+<p><red> <em>IPTV-专家医生</em> </red></p>
+<blockquote>
+<p><red><code>ws_leave_room_request</code> <strong><em>离开房间请求</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_leave_room&quot;,
+    &quot;inquiry_id&quot;:&quot;32131&quot; // 房间ID
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_leave_room_response</code> <strong><em>离开房间响应</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_leave_room_response&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>notice_leave_room</code> <strong><em>通知用户离开房间</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;notice_leave_room&quot;
+    &quot;user_id&quot;:&quot;1003166&quot;,    // 用户ID
+    &quot;user_type&quot;:&quot;doctor&quot;, // 用户类型
+    &quot;inquiry_id&quot;:&quot;321&quot;, // 房间ID
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_join_room_request</code> <strong><em>加入房间请求</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_join_room_request&quot;
+    &quot;user_id&quot;:&quot;1003166&quot; // IPTV用户ID 该ID不正确可能会导致进入的服务器不一致
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_join_room_response</code> <strong><em>加入房间响应</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_join_room_response&quot;
+    &quot;stun_domain&quot;: &quot;test-webrtc.hlwyy.cn&quot;, 
+    &quot;domain&quot;: &quot;test-webrtc.hlwyy.cn&quot;, // 视频服务器地址
+    &quot;port&quot;: &quot;3004&quot;, // 视频服务器地址端口
+    &quot;stun_port&quot;: &quot;3004&quot;,    
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_view_number_request</code> <strong><em>通知当前问诊人数第几号请求</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_view_number_request&quot;
+    &quot;view_number&quot;:1, // 当前问诊序号
+    &quot;doc_id&quot;:&quot;&quot; // 医生ID
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>ws_view_number_response</code> <strong><em>通知当前问诊人数第几号响应</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;ws_view_number_response&quot;
+}
+</code></pre>
+
+<blockquote>
+<p><red><code>notice_view_number</code> <strong><em>通知当前问诊人数第几号</em></strong></red></p>
+</blockquote>
+<pre><code>{
+    &quot;type&quot;:&quot;notice_view_number&quot;
+    &quot;view_number&quot;:1, // 当前问诊序号
+}
+</code></pre>
+
+<p>可以使用封装好的<code>class WebSocket</code>进行推送消息（GatewayClient封装\Websocket），具体方法参照<code>Workerman.pdf(开放接口)</code>，也可以自己进行封装。调用示例如下:</p>
+<pre><code>WebSocket::webSocket()-&gt;method(string $type,array|string $message[,$user_id|$group_id|$client_id]) 
+</code></pre>
+
+<blockquote>
+<p><code>method()</code> 泛指方法
+<code>$type</code> <strong><em>消息类型</em></strong><br />
+<code>$message</code> <strong><em>消息包 如果是string类型的，那么必须包含type且必须为json格式</em></strong><br />
+<code>$user_id|$group_id|$client_id]</code> <strong><em>不同方法不通参数</em></strong></p>
+</blockquote>
+<h4>3、向贵健康用户发送消息</h4>
+<p>调用贵健康相关接口  </p>
+<blockquote>
+<p><code>2213</code> <strong><em>结束问诊 'add_queue'=&gt;1,'delete_queue'=&gt;2, 'end_inquiry'=&gt;3</em></strong><br />
+<code>2215</code> <strong><em>医生离开候诊室</em></strong><br />
+<code>2406</code> <strong><em>转诊</em></strong><br />
+<code>2405</code> <strong><em>向贵健康同步主述、病史、诊断！</em></strong>  
+</p>
+</blockquote>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
